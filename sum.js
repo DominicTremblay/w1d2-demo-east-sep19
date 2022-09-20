@@ -21,29 +21,34 @@ if (args.length < 2) {
 // for loop: for of, c-style loop, forEach
 // create an accumulator
 
-let total = 0;
+const sum = function (numbers) {
+  let total = 0;
 
-for (let arg of args) {
-  // add the numbers => strings
-  // typecast the string into a number
-  // Edge case: If any argument is not a whole number, skip it.
+  for (let arg of numbers) {
+    // add the numbers => strings
+    // typecast the string into a number
+    // Edge case: If any argument is not a whole number, skip it.
 
-  // Math.floor
-  // arg % 1 === 0
+    // Math.floor
+    // arg % 1 === 0
 
-  const convertedNb = Number(arg);
+    const convertedNb = Number(arg);
 
-  if (Number.isInteger(convertedNb)) {
-    total += convertedNb;
-    console.log('arg:', arg, 'total:', total, 'type:', typeof convertedNb);
+    if (Number.isInteger(convertedNb)) {
+      total += convertedNb;
+      console.log('arg:', arg, 'total:', total, 'type:', typeof convertedNb);
+    }
+    // Edge case: If any argument is not a number, output an error message.
+
+    if (isNaN(convertedNb)) {
+      console.log('Please enter only numbers');
+      process.exit();
+    }
   }
-  // Edge case: If any argument is not a number, output an error message.
 
-  if (isNaN(convertedNb)) {
-    console.log('Please enter only numbers');
-    process.exit();
-  }
-}
+  return total;
+};
 
+const result = sum(args);
 // print the output
-console.log('Total:', total);
+console.log('Total:', result);
